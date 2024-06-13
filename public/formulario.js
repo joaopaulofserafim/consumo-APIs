@@ -1,43 +1,42 @@
-// <button type="button" id="btAdd">Adicionar</button>
+
 const btAdd = document.createElement('button');
 btAdd.type = 'button';
 btAdd.id = 'btAdd';
-btAdd.innerHTML = "Adicionar";
+btAdd.innerHTML = 'Adicionar';
 
 const inputs = [
-    { "type": "text", "id": "preco", "label": "Preço" },
+    { "type": "text", "id": "IdProduto", "label": "ID" },
     { "type": "text", "id": "descricao", "label": "Descrição" },
-    { "type": "text", "id": "IdProduto", "label": "ID" }
+    { "type": "text", "id": "preco", "label": "Preço" },
 ];
 
-function criaDivInsputs(inputs) {
+function criaDivForm(inputs) {
 
     const divForm = document.createElement('div');
-    divForm.classList.add('form')
+    divForm.classList.add('form');
     
-    inputs.forEach((produto) => {
+    inputs.forEach(produto => {
         const div = document.createElement('div');
         div.classList.add('controle-form');
-
+    
         const i = document.createElement('input');
         i.type = produto.type;
         i.id = produto.id;
-        i.placeholder = produto.label;
-
-        // const l = document.createElement('label');
-        // l.for = produto.id;
-        // l.innerHTML = produto.label;
-
-        div.append( i);
-        divForm.append(div)
+    
+        const l = document.createElement('label');
+        l.htmlFor = produto.id;
+        l.innerHTML = produto.label;
+    
+        div.append(l, i);
+        divForm.append(div);
     });
 
     return divForm;
-};
 
-const divForm = criaDivInsputs(inputs);
+}
 
+const divForm = criaDivForm(inputs);
 
+divForm.append(btAdd);
 
-divForm.append(btAdd)
 document.body.append(divForm);
